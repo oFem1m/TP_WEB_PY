@@ -46,24 +46,31 @@
     <div class="container">
         <div class="row">
             <div class="col-8" style="margin-bottom: 80px">
-                    <h2>Ask a Question</h2>
-                    <form action="#" method="post">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Brief description of the problem" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="text" class="form-label">Text</label>
-                            <textarea class="form-control" id="text" name="text" rows="4" placeholder="Ask anything!" required ></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="tags" class="form-label">Tags</label>
-                            <input type="text" class="form-control" id="tags" name="tags"
-                                   placeholder="Allows users to quickly find a question">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Ask</button>
-                    </form>
+                <div class="row">
+                    <div class="container mt-4">
+                        <h2 class="mb-4">Ask a Question</h2>
+                        <form action="#" method="post">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                       placeholder="Brief description of the problem" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="text" class="form-label">Text</label>
+                                <textarea class="form-control" id="text" name="text" rows="4"
+                                          placeholder="Ask anything!"
+                                          required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tags" class="form-label">Tags</label>
+                                <input type="text" class="form-control" id="tags" name="tags"
+                                       placeholder="Allows users to quickly find a question">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ask</button>
+                        </form>
+                    </div>
                 </div>
+            </div>
             <div class="col-4">
                 <div class="row">
                     <div class="container mt-4">
@@ -122,22 +129,6 @@
         </div>
     </div>
 </section>
-
-<footer>
-    <nav class="navbar fixed-bottom navbar-light bg-light">
-        <div class="container-fluid justify-content-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link text-secondary" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link text-secondary" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-secondary" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link text-secondary" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link text-secondary" href="#">Next</a></li>
-                </ul>
-            </nav>
-        </div>
-    </nav>
-</footer>
 
 <script src="../static/js/bootstrap.bundle.min.js"></script>
 </body>
