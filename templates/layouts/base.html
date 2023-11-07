@@ -9,6 +9,7 @@
     {% endblock %}
     <link rel="stylesheet" href="../../static/css/bootstrap.css">
 </head>
+
 <body>
 <header>
     <div class="container">
@@ -26,7 +27,9 @@
                     <button class="btn btn-primary" type="button" onclick="window.location.href = '../ask.html'">Ask!
                     </button>
                 </form>
+
                 <ul class="navbar-nav justify-content-center">
+                    {% block profile %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink-1" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,9 +44,8 @@
                         <img src="../../static/assets/avatar.png" width="40" height="40"
                              class="img-thumbnail " alt="" loading="lazy">
                     </li>
+                    {% endblock %}
                 </ul>
-
-
             </div>
         </nav>
     </div>
