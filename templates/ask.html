@@ -1,140 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}
     <title>Ask</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-</head>
-<body>
-<header>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="./index.html">
-                    <img src="../static/assets/Q_logo.png" width="30" height="30"
-                         class="img-thumbnail d-inline-block align-top"
-                         alt="" loading="lazy">
-                    AskQ
-                </a>
-                <form class="d-flex justify-content-center">
-                    <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    <button class="btn btn-primary" type="button" onclick="window.location.href = './ask.html'">Ask!
-                    </button>
-                </form>
-                <ul class="navbar-nav justify-content-center">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink-1" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            oFem1m_
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-1">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <img src="../static/assets/avatar.png" width="40" height="40"
-                             class="img-thumbnail " alt="" loading="lazy">
-                    </li>
-                </ul>
+{% endblock %}
 
+{% block content %}
+<div class="row" style="margin-bottom: 80px">
+    <div class="container mt-4">
+        <h2 class="mb-4">Ask a Question</h2>
+        <form action="#" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title"
+                       placeholder="Brief description of the problem" required>
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Text</label>
+                <textarea class="form-control" id="text" name="text" rows="4"
+                          placeholder="Ask anything!"
+                          required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="tags" class="form-label">Tags</label>
+                <input type="text" class="form-control" id="tags" name="tags"
+                       placeholder="Allows users to quickly find a question">
+            </div>
+            <button class="btn btn-primary" type="submit"
+                    onclick="window.location.href = './index.html'">Ask!
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
 
-            </div>
-        </nav>
-    </div>
-</header>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8" style="margin-bottom: 80px">
-                <div class="row">
-                    <div class="container mt-4">
-                        <h2 class="mb-4">Ask a Question</h2>
-                        <form action="#" method="post">
-                            <div class="mb-3">
-                                <label for="title" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="title" name="title"
-                                       placeholder="Brief description of the problem" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="text" class="form-label">Text</label>
-                                <textarea class="form-control" id="text" name="text" rows="4"
-                                          placeholder="Ask anything!"
-                                          required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tags" class="form-label">Tags</label>
-                                <input type="text" class="form-control" id="tags" name="tags"
-                                       placeholder="Allows users to quickly find a question">
-                            </div>
-                            <button class="btn btn-primary" type="submit"
-                                    onclick="window.location.href = './index.html'">Ask!
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="row">
-                    <div class="container mt-4">
-                        <h2 class="mb-4">Popular Tags</h2>
-                        <ul class="list-group list-group-flush list-group-horizontal">
-                            <li class="list-group-item">
-                                <a href="#" class="btn btn-primary">Cras justo odio</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#" class="btn btn-success">Dapibus ac facilisis in</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#" class="btn btn-info">Morbi leo risus</a>
-                            </li>
-                        </ul>
-                        <ul class="list-group list-group-flush list-group-horizontal">
-                            <li class="list-group-item">
-                                <a href="#" class="btn btn-warning">Porta ac consectetur ac</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#" class="btn btn-danger">Vestibulum at eros</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="container mt-4">
-                        <h2 class="mb-4">Best Members</h2>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <img src="../static/assets/avatar.png" width="30" height="30" alt="Аватар пользователя">
-                                <a href="/profile/member1">Member 1</a>
-                            </li>
-                            <li class="list-group-item">
-                                <img src="../static/assets/avatar.png" width="30" height="30"
-                                     alt="Аватар пользователя 2">
-                                <a href="/profile/member2">Member 2</a>
-                            </li>
-                            <li class="list-group-item">
-                                <img src="../static/assets/avatar.png" width="30" height="30"
-                                     alt="Аватар пользователя 3">
-                                <a href="/profile/member3">Member 3</a>
-                            </li>
-                            <li class="list-group-item">
-                                <img src="../static/assets/avatar.png" width="30" height="30"
-                                     alt="Аватар пользователя 4">
-                                <a href="/profile/member4">Member 4</a>
-                            </li>
-                            <li class="list-group-item">
-                                <img src="../static/assets/avatar.png" width="30" height="30"
-                                     alt="Аватар пользователя 5">
-                                <a href="/profile/member5">Member 5</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <script src="../static/js/bootstrap.bundle.min.js"></script>
 </body>
