@@ -1,0 +1,146 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Base</title>
+    {% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+    {% endblock %}
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'main' %}">
+                    <img src="{% static '/assets/Q_logo.png' %}" width="30" height="30"
+                         class="img-thumbnail d-inline-block align-top"
+                         alt="" loading="lazy">
+                    AskQ
+                </a>
+                <form class="d-flex justify-content-center">
+                    <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    {% block ask %}
+                    <button class="btn btn-primary" type="button" onclick="window.location.href = '{% url 'ask' %}'">Ask!
+                    {% endblock %}
+                    </button>
+                </form>
+
+                <ul class="navbar-nav justify-content-center">
+                    {% block profile %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink-1" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                oFem1m_
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-1">
+                                <li><a class="dropdown-item" href="">Profile</a></li>
+                                <li><a class="dropdown-item" href="">Log out</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <img src="{% static '/assets/avatar.png' %}" width="40" height="40"
+                                 class="img-thumbnail" alt="" loading="lazy">
+                        </li>
+                    {% endblock %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="container mt-4">
+                        <h2 class="mb-4">Popular Tags</h2>
+                        <ul class="list-group list-group-flush list-group-horizontal">
+                            <li class="list-group-item">
+                                <a href="" class="btn btn-primary">Cras justo odio</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="" class="btn btn-success">Dapibus ac facilisis in</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="" class="btn btn-info">Morbi leo risus</a>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush list-group-horizontal">
+                            <li class="list-group-item">
+                                <a href="" class="btn btn-warning">Porta ac consectetur ac</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="" class="btn btn-danger">Vestibulum at eros</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container mt-4">
+                        <h2 class="mb-4">Best Members</h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <img src="{% static '/assets/avatar.png' %}" width="30" height="30"
+                                     alt="Аватар пользователя">
+                                <a href="/profile/member1">Member 1</a>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="{% static '/assets/avatar.png' %}" width="30" height="30"
+                                     alt="Аватар пользователя 2">
+                                <a href="/profile/member2">Member 2</a>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="{% static '/assets/avatar.png' %}" width="30" height="30"
+                                     alt="Аватар пользователя 3">
+                                <a href="/profile/member3">Member 3</a>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="{% static '/assets/avatar.png' %}" width="30" height="30"
+                                     alt="Аватар пользователя 4">
+                                <a href="/profile/member4">Member 4</a>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="{% static '/assets/avatar.png' %}" width="30" height="30"
+                                     alt="Аватар пользователя 5">
+                                <a href="/profile/member5">Member 5</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block footer %}
+    <footer>
+        <nav class="navbar fixed-bottom navbar-light bg-light">
+            <div class="container-fluid justify-content-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link text-secondary" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link text-secondary" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link text-secondary" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link text-secondary" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link text-secondary" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </footer>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+{% endblock %}
+</body>
+</html>

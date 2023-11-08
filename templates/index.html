@@ -1,0 +1,129 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Index</title>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="container mt-4">
+            <h2 class="mb-4">Popular Questions</h2>
+            <div class="card mb-4">
+                <div class="row g-0">
+                    <div class="col-md-2 d-flex justify-content-center align-items-center ">
+                        <img src="{% static '/assets/avatar.png' %}" width="80" height="80" alt="Аватар">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="./question">Question</a></h4>
+                            <p class="card-text">I don't know how to solve this problem... </p>
+                            <a href="./question" class="card-link">Answers (3)</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row align-items-center">
+                        <div class="col-2">
+                            <div class="btn-group" role="group" aria-label="Лайк и дисклайк">
+                                <button type="button" class="btn btn-success">
+                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30"
+                                         alt="За">
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30"
+                                         alt="Против"
+                                         style="transform: rotate(180deg)">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="fw-bold">
+                                Tags:
+                                <a href="#" class="btn btn-primary">Cras justo odio</a>
+                                <a href="#" class="btn btn-success">Dapibus ac facilisis in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="row g-0">
+                    <div class="col-md-2 d-flex justify-content-center align-items-center ">
+                        <img src="{% static '/assets/avatar.png' %}" width="80" height="80" alt="Аватар">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="./question">Question</a></h4>
+                            <p class="card-text">I don't know how to solve this problem... </p>
+                            <a href="./question.html" class="card-link">Answers (1)</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row align-items-center">
+                        <div class="col-2">
+                            <div class="btn-group" role="group" aria-label="Лайк и дисклайк">
+                                <button type="button" class="btn btn-success">
+                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30"
+                                         alt="За">
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30"
+                                         alt="Против"
+                                         style="transform: rotate(180deg)">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="fw-bold">
+                                Tags:
+                                <a href="#" class="btn btn-info">Morbi leo risus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="row g-0">
+                    <div class="col-md-2 d-flex justify-content-center align-items-center ">
+                        <img src="{% static '/assets/avatar.png' %}" width="80" height="80" alt="Аватар">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="./question">Question</a></h4>
+                            <p class="card-text">I don't know how to solve this problem... </p>
+                            <a href="./question.html" class="card-link">Answers (2)</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row align-items-center">
+                        <div class="col-2">
+                            <div class="btn-group" role="group" aria-label="Лайк и дисклайк">
+                                <button type="button" class="btn btn-success">
+                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30"
+                                         alt="За">
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30"
+                                         alt="Против"
+                                         style="transform: rotate(180deg)">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="fw-bold">
+                                Tags:
+                                <a href="#" class="btn btn-warning">Porta ac consectetur ac</a>
+                                <a href="#" class="btn btn-danger">Vestibulum at eros</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

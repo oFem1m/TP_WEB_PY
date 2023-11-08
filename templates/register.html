@@ -1,0 +1,91 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Signup</title>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <style>
+        #image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block ask %}
+{% endblock %}
+
+{% block profile %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Log in</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'signup' %}">Register</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="container mt-4">
+            <h2 class="mb-4">Register</h2>
+            <form action="./index.html" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="login" class="form-label">Login</label>
+                    <input type="text" class="form-control" id="login" name="login" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nickname" class="form-label">NickName</label>
+                    <input type="text" class="form-control" id="nickname" name="nickname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="avatar" class="form-label">Upload avatar</label>
+                    <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*"
+                           required>
+                    <img id="image-preview" src="" alt="Image Preview" style="display: none;">
+
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+<script>
+    const avatarInput = document.getElementById('avatar');
+    const imagePreview = document.getElementById('image-preview');
+
+    avatarInput.addEventListener('change', function () {
+        const file = avatarInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.style.display = 'none';
+        }
+
+        // Проверка, что выбранный файл - изображение
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (file && allowedTypes.includes(file.type)) {
+            // Файл - изображение
+        } else {
+            // Файл не является изображением
+            alert('Please select a valid image file (JPEG, PNG, or GIF).');
+            avatarInput.value = ''; // Сброс выбранного файла
+            imagePreview.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}
