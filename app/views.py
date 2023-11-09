@@ -4,25 +4,28 @@ from django.core.paginator import Paginator, InvalidPage
 QUESTIONS = [
     {
         'id': i,
-        'title': f'Question {i}',
-        'content': f'Lorem Ipsum {i}',
-        'num_answers': i,
-        'tags': ['math'],
+        'title': f'Question №{i}',
+        'content': 'I can\'t solve this problem',
+        'num_answers': 50,
+        'tags': ['test'],
     } for i in range(2500)
 ]
 
 STATS = {
-    'tags': ['Cras', 'Dapibus', 'Morbi', 'Porta', 'Vestibulum'],
+    'tags': ['Cras', 'Dapibus', 'Morbi', 'Porta', 'Vestibulum', 'Cras', 'Dapibus', 'Morbi', 'Porta', 'Vestibulum'],
     'best_members': ['Member 1', 'Member 2', 'Member 3', 'Member 4', 'Member 5'],
 }
 
-REPLY = {
-    'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. '
-               'Atque corporis delectus repudiandae? Accusamus, accusantium '
-               'atque culpa debitis, deserunt, dignissimos dolor doloremque '
-               'ducimus esse est et harum hic laudantium libero minima nesciunt '
-               'nostrum obcaecati possimus quis quos repellendus voluptate voluptatem voluptates.'
-}
+REPLY = [
+    {
+        'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. '
+                   'Cupiditate ea eos, est facere facilis itaque pariatur tenetur! '
+                   'Consequatur cum cumque delectus dolor dolorum expedita explicabo '
+                   'inventore labore nostrum placeat quia quidem ratione, repellendus '
+                   'sapiente vitae? Et facilis rem repellendus suscipit.',
+
+    } for i in range(50)
+]
 
 
 def paginate(request, objects, per_page=15):
@@ -46,8 +49,11 @@ def index(request):
                    'pagination': pagination_buttons})
 
 
-def question(request):
-    return render(request, 'question.html', {'stats': STATS})
+def question(request, question_id):
+    item = QUESTIONS[question_id]
+    page_obj, pagination_buttons = paginate(request, REPLY)
+    return render(request, 'question.html',
+                  {'question': item, 'replies': page_obj, 'stats': STATS, 'pagination': pagination_buttons})
 
 
 def ask(request):
@@ -60,3 +66,17 @@ def login(request):
 
 def signup(request):
     return render(request, 'register.html', {'stats': STATS})
+
+
+def tag(request, tag_id):
+    page_obj, pagination_buttons = paginate(request, QUESTIONS)
+    return render(request, 'index.html',
+                  {'page_obj': page_obj, 'page_title': f'Tag: {tag_id}', 'stats': STATS,
+                   'pagination': pagination_buttons})
+
+
+def hot(request):
+    page_obj, pagination_buttons = paginate(request, QUESTIONS)
+    return render(request, 'index.html',
+                  {'page_obj': page_obj, 'page_title': 'Hot Questions', 'stats': STATS,
+                   'pagination': pagination_buttons})

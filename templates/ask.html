@@ -6,33 +6,39 @@
 {% endblock %}
 
 {% block content %}
-<div class="row" style="margin-bottom: 80px">
-    <div class="container mt-4">
-        <h2 class="mb-4">Ask a Question</h2>
-        <form action="#" method="post">
-            <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title"
-                       placeholder="Brief description of the problem" required>
-            </div>
-            <div class="mb-3">
-                <label for="text" class="form-label">Text</label>
-                <textarea class="form-control" id="text" name="text" rows="4"
-                          placeholder="Ask anything!"
-                          required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="tags" class="form-label">Tags</label>
-                <input type="text" class="form-control" id="tags" name="tags"
-                       placeholder="Allows users to quickly find a question">
-            </div>
-            <button class="btn btn-primary" type="submit"
-                    onclick="window.location.href = '{% url 'main' %}'">Ask!
-            </button>
-        </form>
+    <div class="row" style="margin-bottom: 80px">
+        <div class="container mt-4">
+            <h2 class="mb-4">Ask a Question</h2>
+            <form action="#" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title"
+                           placeholder="Brief description of the problem" required>
+                </div>
+                <div class="mb-3">
+                    <label for="text" class="form-label">Text</label>
+                    <textarea class="form-control" id="text" name="text" rows="4"
+                              placeholder="Ask anything!"
+                              required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Tags</label>
+                    <input type="text" class="form-control" id="tags" name="tags"
+                           placeholder="Allows users to quickly find a question">
+                </div>
+                <button class="btn btn-primary" type="submit"
+                        onclick="window.location.href = '{% url 'main' %}'">Ask!
+                </button>
+            </form>
+        </div>
     </div>
-</div>
+{% endblock %}
+
+{% block pagination %}
 {% endblock %}
 
 {% block footer %}
+    <nav class="navbar navbar-light bg-light fixed-bottom justify-content-center">
+        <p>Volokhov Aleksandr 2023</p>
+    </nav>
 {% endblock %}

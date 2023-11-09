@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
     <style>
         #image-preview {
             max-width: 100%;
@@ -57,35 +57,45 @@
         </div>
     </div>
 {% endblock %}
+
+{% block pagination %}
+{% endblock %}
+
+{% block footer %}
+    <nav class="navbar navbar-light bg-light fixed-bottom justify-content-center">
+        <p>Volokhov Aleksandr 2023</p>
+    </nav>
+{% endblock %}
+
 {% block scripts %}
-<script src="../static/js/bootstrap.bundle.min.js"></script>
-<script>
-    const avatarInput = document.getElementById('avatar');
-    const imagePreview = document.getElementById('image-preview');
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        const avatarInput = document.getElementById('avatar');
+        const imagePreview = document.getElementById('image-preview');
 
-    avatarInput.addEventListener('change', function () {
-        const file = avatarInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        } else {
-            imagePreview.style.display = 'none';
-        }
+        avatarInput.addEventListener('change', function () {
+            const file = avatarInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+            }
 
-        // Проверка, что выбранный файл - изображение
-        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (file && allowedTypes.includes(file.type)) {
-            // Файл - изображение
-        } else {
-            // Файл не является изображением
-            alert('Please select a valid image file (JPEG, PNG, or GIF).');
-            avatarInput.value = ''; // Сброс выбранного файла
-            imagePreview.style.display = 'none';
-        }
-    });
-</script>
+            // Проверка, что выбранный файл - изображение
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (file && allowedTypes.includes(file.type)) {
+                // Файл - изображение
+            } else {
+                // Файл не является изображением
+                alert('Please select a valid image file (JPEG, PNG, or GIF).');
+                avatarInput.value = ''; // Сброс выбранного файла
+                imagePreview.style.display = 'none';
+            }
+        });
+    </script>
 {% endblock %}

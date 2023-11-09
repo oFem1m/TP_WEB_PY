@@ -6,124 +6,15 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="container mt-4">
-            <div class="row mb-4">
-                <div class="col-2">
-                    <img src="{% static '/assets/avatar.png' %}" width="100" height="100" alt="avatar">
-                </div>
-                <div class="col-10">
-                    <h1 class="mb-4">Very important question</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum iste, unde.
-                        Accusamus assumenda, blanditiis consectetur distinctio esse et facilis itaque nobis
-                        omnis qui quibusdam tempora velit. Cumque cupiditate earum, eligendi esse laudantium
-                        maxime molestias numquam tenetur voluptatibus!
-                    </p>
-                    <div class="d-flex align-items-center mt-1">
-
-                        <div class="btn-group" role="group" aria-label="Лайк и дисклайк">
-                            <button type="button" class="btn btn-success">
-                                <img src="{% static '/assets/upvote.svg' %}" width="30" height="30" alt="За">
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <img src="{% static '/assets/upvote.svg' %}" width="30" height="30" alt="Против"
-                                     style="transform: rotate(180deg)">
-                            </button>
-                        </div>
-                        <div class="ps-3 fw-bold">
-                            Tags:
-                            <a href="#" class="btn btn-warning">Porta ac consectetur ac</a>
-                            <a href="#" class="btn btn-danger">Vestibulum at eros</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            {% include 'components/question-item.html' %}
             <div class="card mb-4">
-                <div class="row g-0">
-                    <div class="col-md-2 d-flex justify-content-center align-items-center ">
-                        <img src="{% static '/assets/avatar.png' %}" width="80" height="80" alt="Аватар">
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <h4 class="card-title">Answer</h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Culpa, delectus deserunt ducimus eius eos, error ex fugiat hic impedit
-                                obcaecati pariatur porro rerum sequi similique temporibus vero vitae
-                                voluptatem voluptatibus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row align-items-center">
-                        <div class="col-2">
-                            <div class="btn-group" role="group" aria-label="Лайк и дисклайк">
-                                <button type="button" class="btn btn-success">
-                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30" alt="За">
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30" alt="Против"
-                                         style="transform: rotate(180deg)">
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <div class="fw-bold">
-                                Correct:
-                                <i class="fas fa-check text-success"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-4">
-                <div class="row g-0">
-                    <div class="col-md-2 d-flex justify-content-center align-items-center ">
-                        <img src="{% static '/assets/avatar.png' %}" width="80" height="80" alt="Аватар">
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <h4 class="card-title">Answer</h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Accusantium ad beatae commodi culpa debitis deleniti deserunt, dolore,
-                                eum nam, nemo pariatur qui quia repellat! Consectetur dolores,
-                                ex expedita harum modi nihil nobis obcaecati odit quis quod rem sequi
-                                totam vel?</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row align-items-center">
-                        <div class="col-2">
-                            <div class="btn-group" role="group" aria-label="Лайк и дисклайк">
-                                <button type="button" class="btn btn-success">
-                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30" alt="За">
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <img src="{% static '/assets/upvote.svg' %}" width="30" height="30"
-                                         alt="Против"
-                                         style="transform: rotate(180deg)">
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <div class="fw-bold">
-                                Correct:
-                                <i class="fas fa-question text-danger"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card" style="margin-bottom: 80px">
                 <div class="row g-0">
                     <div class="col-md-2 d-flex justify-content-center align-items-center">
                         <img src="{% static '/assets/avatar.png' %}" width="80" height="80" alt="Аватар">
@@ -140,8 +31,10 @@
                     </div>
                 </div>
             </div>
+            {% for reply in replies %}
+                {% include 'components/reply-item.html' %}
+            {% endfor %}
         </div>
     </div>
-
 {% endblock %}
 

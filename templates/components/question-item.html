@@ -6,9 +6,11 @@
         </div>
         <div class="col-md-10">
             <div class="card-body">
-                <h4 class="card-title"><a href="{% url 'question' %}">{{ question.title }}</a></h4>
+                <h4 class="card-title"><a href="{% url 'question' question_id=question.id %}">{{ question.title }}</a>
+                </h4>
                 <p class="card-text">{{ question.content }}</p>
-                <a href="{% url 'question' %}" class="card-link">Answers ({{ question.num_answers }})</a>
+                <a href="{% url 'question' question_id=question.id %}" class="card-link">Answers
+                    ({{ question.num_answers }})</a>
             </div>
         </div>
     </div>
@@ -30,8 +32,10 @@
             <div class="col-10">
                 <div class="fw-bold">
                     Tags:
-                    <a href="#" class="btn btn-primary">{{ tag }}</a>
-                    <a href="#" class="btn btn-success">Dapibus ac facilisis in</a>
+                    {% for tag in question.tags %}
+                        <a href="{% url 'tag' tag_id=tag %}" class="btn btn-primary">{{ tag }}</a>
+                        {% if forloop.last is False %},{% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

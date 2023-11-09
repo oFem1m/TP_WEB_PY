@@ -4,9 +4,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     {% block title %}
         <title>Base</title>
     {% endblock %}
+
     {% block stylesheets %}
         <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
     {% endblock %}
@@ -65,13 +67,12 @@
                 <div class="row">
                     <div class="container mt-4">
                         <h2 class="mb-4">Popular Tags</h2>
-                        <ul class="list-group list-group-flush list-group-horizontal">
+                        <ul class="list-group list-group-flush list-group-horizontal d-flex flex-wrap">
                             {% for tag in stats.tags %}
                                 <li class="list-group-item">
-                                    <a href="" class="btn btn-primary">{{ tag }}</a>
+                                    <a href="{% url 'tag' tag_id=tag %}" class="btn btn-primary">{{ tag }}</a>
                                 </li>
                             {% endfor %}
-
                         </ul>
                     </div>
                 </div>
@@ -90,19 +91,23 @@
                     </div>
                 </div>
             </div>
+            {% block pagination %}
+                {% include 'components/pagination.html' %}
+            {% endblock %}
         </div>
     </div>
+
+    {% block footer %}
+        <nav class="navbar navbar-light bg-light justify-content-center">
+            <p>Volokhov Aleksandr 2023</p>
+        </nav>
+    {% endblock %}
+
 </section>
 
-{% block footer %}
-    <footer>
-        <nav class="navbar fixed-bottom navbar-light bg-light">
-            {% include 'components/pagination.html' %}
-       </nav>
-    </footer>
-{% endblock %}
 {% block scripts %}
     <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
 {% endblock %}
+
 </body>
 </html>
