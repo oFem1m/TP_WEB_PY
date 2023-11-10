@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            {% for reply in replies %}
+            {% for reply in page_obj %}
                 {% include 'components/reply-item.html' %}
             {% endfor %}
         </div>

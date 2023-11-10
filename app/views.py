@@ -8,7 +8,7 @@ QUESTIONS = [
         'content': 'I can\'t solve this problem',
         'num_answers': 50,
         'tags': ['test'],
-    } for i in range(2500)
+    } for i in range(200)
 ]
 
 STATS = {
@@ -24,7 +24,7 @@ REPLY = [
                    'inventore labore nostrum placeat quia quidem ratione, repellendus '
                    'sapiente vitae? Et facilis rem repellendus suscipit.',
 
-    } for i in range(50)
+    } for i in range(30)
 ]
 
 
@@ -53,7 +53,7 @@ def question(request, question_id):
     item = QUESTIONS[question_id]
     page_obj, pagination_buttons = paginate(request, REPLY)
     return render(request, 'question.html',
-                  {'question': item, 'replies': page_obj, 'stats': STATS, 'pagination': pagination_buttons})
+                  {'question': item, 'page_obj': page_obj, 'stats': STATS, 'pagination': pagination_buttons})
 
 
 def ask(request):
