@@ -4,7 +4,7 @@ from .models import Question, Answer, Tag
 from .managers import QuestionManager
 
 STATS = {
-    'tags': ['tag_0', 'tag_72', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_'],
+    'tags': ['tag_0', 'tag_72', 'tag_12', 'tag_87', 'tag_40', 'tag_45', 'tag_21', 'tag_94', 'tag_11', 'tag_3'],
     'best_members': ['Member 1', 'Member 2', 'Member 3', 'Member 4', 'Member 5'],
 }
 
