@@ -10,7 +10,7 @@
                 </h4>
                 <p class="card-text">{{ question.content }}</p>
                 <a href="{% url 'question' question_id=question.id %}" class="card-link">Answers
-                    ({{ question.num_answers }})</a>
+                    ({{ question.get_num_answers }})</a>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                 <div class="fw-bold">
                     Tags:
                     {% for tag in question.tags.all %}
-                        <a href="{% url 'tag' tag_id=tag %}" class="btn btn-primary">{{ tag.name }}</a>
+                        <a href="{% url 'tag' tag_id=tag.name %}" class="btn btn-primary">{{ tag.name }}</a>
                         {% if not forloop.last %},{% endif %}
                     {% endfor %}
                 </div>

@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, InvalidPage
 from .models import Question, Answer, Tag
 from .managers import QuestionManager
 
 STATS = {
-    'tags': ['Cras', 'Dapibus', 'Morbi', 'Porta', 'Vestibulum', 'Cras', 'Dapibus', 'Morbi', 'Porta', 'Vestibulum'],
+    'tags': ['tag_0', 'tag_72', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_', 'tag_'],
     'best_members': ['Member 1', 'Member 2', 'Member 3', 'Member 4', 'Member 5'],
 }
 
@@ -51,10 +51,11 @@ def signup(request):
 
 
 def tag(request, tag_id):
-    questions = Question.objects.filter(tags__name=tag_id)
+    tag = get_object_or_404(Tag, name__iexact=tag_id)
+    questions = Question.objects.filter(tags=tag)
     page_obj, pagination_buttons = paginate(questions, request=request)
     return render(request, 'index.html',
-                  {'page_obj': page_obj, 'page_title': f'Tag: {tag_id}', 'stats': STATS,
+                  {'page_obj': page_obj, 'page_title': f'Tag: {tag.name}', 'stats': STATS,
                    'pagination': pagination_buttons})
 
 

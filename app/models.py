@@ -19,12 +19,16 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag)
 
+    def get_num_answers(self):
+        return self.answer_set.count()
+
     objects = QuestionManager()
 
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    text = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
 
