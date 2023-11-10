@@ -1,35 +1,16 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, InvalidPage
-
-QUESTIONS = [
-    {
-        'id': i,
-        'title': f'Question №{i}',
-        'content': 'I can\'t solve this problem',
-        'num_answers': 50,
-        'tags': ['test'],
-    } for i in range(200)
-]
+from .models import Question, Answer, Tag
+from .managers import QuestionManager
 
 STATS = {
     'tags': ['Cras', 'Dapibus', 'Morbi', 'Porta', 'Vestibulum', 'Cras', 'Dapibus', 'Morbi', 'Porta', 'Vestibulum'],
     'best_members': ['Member 1', 'Member 2', 'Member 3', 'Member 4', 'Member 5'],
 }
 
-REPLY = [
-    {
-        'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. '
-                   'Cupiditate ea eos, est facere facilis itaque pariatur tenetur! '
-                   'Consequatur cum cumque delectus dolor dolorum expedita explicabo '
-                   'inventore labore nostrum placeat quia quidem ratione, repellendus '
-                   'sapiente vitae? Et facilis rem repellendus suscipit.',
 
-    } for i in range(30)
-]
-
-
-def paginate(request, objects, per_page=15):
-    page = request.GET.get('page', 1)
+def paginate(objects, per_page=15, request=None):
+    page = request.GET.get('page', 1) if request else 1
     paginator = Paginator(objects, per_page)
     try:
         page_obj = paginator.page(page)
@@ -41,19 +22,20 @@ def paginate(request, objects, per_page=15):
     return page_obj, page_range
 
 
-# Create your views here.
 def index(request):
-    page_obj, pagination_buttons = paginate(request, QUESTIONS)
+    questions = Question.objects.get_newest_questions()
+    page_obj, pagination_buttons = paginate(questions, request=request)
     return render(request, 'index.html',
                   {'page_obj': page_obj, 'page_title': 'Questions', 'stats': STATS,
                    'pagination': pagination_buttons})
 
 
 def question(request, question_id):
-    item = QUESTIONS[question_id]
-    page_obj, pagination_buttons = paginate(request, REPLY)
+    question_item = Question.objects.get(pk=question_id)
+    answers = Answer.objects.filter(question=question_item)
+    page_obj, pagination_buttons = paginate(answers, request=request)
     return render(request, 'question.html',
-                  {'question': item, 'page_obj': page_obj, 'stats': STATS, 'pagination': pagination_buttons})
+                  {'question': question_item, 'page_obj': page_obj, 'stats': STATS, 'pagination': pagination_buttons})
 
 
 def ask(request):
@@ -69,14 +51,16 @@ def signup(request):
 
 
 def tag(request, tag_id):
-    page_obj, pagination_buttons = paginate(request, QUESTIONS)
+    questions = Question.objects.filter(tags__name=tag_id)
+    page_obj, pagination_buttons = paginate(questions, request=request)
     return render(request, 'index.html',
                   {'page_obj': page_obj, 'page_title': f'Tag: {tag_id}', 'stats': STATS,
                    'pagination': pagination_buttons})
 
 
 def hot(request):
-    page_obj, pagination_buttons = paginate(request, QUESTIONS)
+    questions = Question.objects.get_best_questions()
+    page_obj, pagination_buttons = paginate(questions, request=request)
     return render(request, 'index.html',
                   {'page_obj': page_obj, 'page_title': 'Hot Questions', 'stats': STATS,
                    'pagination': pagination_buttons})

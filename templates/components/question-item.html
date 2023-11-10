@@ -32,9 +32,9 @@
             <div class="col-10">
                 <div class="fw-bold">
                     Tags:
-                    {% for tag in question.tags %}
-                        <a href="{% url 'tag' tag_id=tag %}" class="btn btn-primary">{{ tag }}</a>
-                        {% if forloop.last is False %},{% endif %}
+                    {% for tag in question.tags.all %}
+                        <a href="{% url 'tag' tag_id=tag %}" class="btn btn-primary">{{ tag.name }}</a>
+                        {% if not forloop.last %},{% endif %}
                     {% endfor %}
                 </div>
             </div>
