@@ -42,12 +42,12 @@ class Command(BaseCommand):
 
         # Создаем лайки и дислайки для вопросов
         for i in range(ratio * 10):
-            question = Question.objects.get(pk=i + 1)  # Получаем вопрос по id
-            total_ratings = ratio * 2  # В среднем 2 оценки на вопрос
+            question = Question.objects.get(pk=i + 1)
+            total_ratings = 4
 
             for j in range(total_ratings):
                 user = random.choice(users)
-                is_like = random.choice([True, False])  # Решаем, будет это лайк или дислайк
+                is_like = random.choice([True, False])
 
                 if is_like:
                     like = Like.objects.create(user=user, question=question)
@@ -56,12 +56,12 @@ class Command(BaseCommand):
 
         # Создаем лайки и дислайки для ответов
         for i in range(ratio * 100):
-            answer = Answer.objects.get(pk=i + 1)  # Получаем ответ по id
-            total_ratings = ratio * 2  # В среднем 2 оценки на ответ
+            answer = Answer.objects.get(pk=i + 1)
+            total_ratings = 4
 
             for j in range(total_ratings):
                 user = random.choice(users)
-                is_like = random.choice([True, False])  # Решаем, будет это лайк или дислайк
+                is_like = random.choice([True, False])
 
                 if is_like:
                     like = Like.objects.create(user=user, answer=answer)
