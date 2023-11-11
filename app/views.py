@@ -23,7 +23,7 @@ def paginate(objects, per_page=15, request=None):
 
 
 def index(request):
-    questions = Question.objects.get_newest_questions()
+    questions = Question.objects.get_best_questions()
     page_obj, pagination_buttons = paginate(questions, request=request)
     return render(request, 'index.html',
                   {'page_obj': page_obj, 'page_title': 'Questions', 'stats': STATS,
@@ -32,7 +32,7 @@ def index(request):
 
 def question(request, question_id):
     question_item = Question.objects.get(pk=question_id)
-    answers = Answer.objects.filter(question=question_item)
+    answers = Answer.objects.get_hot_answers().filter(question=question_item)
     page_obj, pagination_buttons = paginate(answers, request=request)
     return render(request, 'question.html',
                   {'question': question_item, 'page_obj': page_obj, 'stats': STATS, 'pagination': pagination_buttons})
@@ -60,7 +60,7 @@ def tag(request, tag_id):
 
 
 def hot(request):
-    questions = Question.objects.get_best_questions()
+    questions = Question.objects.get_hot_questions()
     page_obj, pagination_buttons = paginate(questions, request=request)
     return render(request, 'index.html',
                   {'page_obj': page_obj, 'page_title': 'Hot Questions', 'stats': STATS,

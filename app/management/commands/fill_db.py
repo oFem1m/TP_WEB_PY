@@ -1,6 +1,7 @@
+import random
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from app.models import Question, Answer, Tag
+from app.models import Question, Answer, Tag, Like, Dislike
 import uuid
 from faker import Faker
 
@@ -38,6 +39,34 @@ class Command(BaseCommand):
             author = users[i % ratio]
             question = Question.objects.get(pk=i % (ratio * 10) + 1)  # Получаем вопрос по id
             answer = Answer.objects.create(author=author, question=question, content=fake.text())
+
+        # Создаем лайки и дислайки для вопросов
+        for i in range(ratio * 10):
+            question = Question.objects.get(pk=i + 1)  # Получаем вопрос по id
+            total_ratings = ratio * 2  # В среднем 2 оценки на вопрос
+
+            for j in range(total_ratings):
+                user = random.choice(users)
+                is_like = random.choice([True, False])  # Решаем, будет это лайк или дислайк
+
+                if is_like:
+                    like = Like.objects.create(user=user, question=question)
+                else:
+                    dislike = Dislike.objects.create(user=user, question=question)
+
+        # Создаем лайки и дислайки для ответов
+        for i in range(ratio * 100):
+            answer = Answer.objects.get(pk=i + 1)  # Получаем ответ по id
+            total_ratings = ratio * 2  # В среднем 2 оценки на ответ
+
+            for j in range(total_ratings):
+                user = random.choice(users)
+                is_like = random.choice([True, False])  # Решаем, будет это лайк или дислайк
+
+                if is_like:
+                    like = Like.objects.create(user=user, answer=answer)
+                else:
+                    dislike = Dislike.objects.create(user=user, answer=answer)
 
         # Выводим сообщение об успешном заполнении базы данных
         self.stdout.write(self.style.SUCCESS(f'Successfully filled the database with test data (ratio={ratio}).'))
