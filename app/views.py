@@ -31,7 +31,7 @@ def index(request):
 
 
 def question(request, question_id):
-    question_item = Question.objects.get(pk=question_id)
+    question_item = get_object_or_404(Question, pk=question_id)
     answers = Answer.objects.get_hot_answers().filter(question=question_item)
     page_obj, pagination_buttons = paginate(answers, request=request)
     return render(request, 'question.html',
